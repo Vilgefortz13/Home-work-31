@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import static java.util.stream.Collectors.*;
+
 public class RestaurantOrders {
     // Этот блок кода менять нельзя! НАЧАЛО!
     private List<Order> orders;
@@ -42,4 +44,10 @@ public class RestaurantOrders {
     // для решения заданий из домашки :)
     // вы можете добавлять все необходимые imports
     //
+
+    public List<Order> returnHomeDeliveries() {
+        return orders.stream()
+                .filter(Order::isHomeDelivery)
+                .collect(toList());
+    }
 }
