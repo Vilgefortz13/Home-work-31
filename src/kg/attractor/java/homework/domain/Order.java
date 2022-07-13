@@ -6,6 +6,7 @@ import kg.attractor.java.homework.util.NotImplementedException;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 
 public class Order {
     // Этот блок кода менять нельзя! НАЧАЛО!
@@ -55,8 +56,16 @@ public class Order {
     //------   Реализация ваших методов должна быть ниже этой линии   ------
     //----------------------------------------------------------------------
 
-    public void calculateTotal() {
+    public DoubleStream calculateTotal() {
+        int sum = 0;
+        DoubleStream result = DoubleStream.of(0);
 
+        while (items.size() > 0) {
+            result = items.stream()
+                    .mapToDouble(e -> e.getPrice() + sum);
+        }
+
+        return result;
     }
 
     public void printListOfOrders() {
