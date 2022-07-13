@@ -1,9 +1,11 @@
 package kg.attractor.java.homework.domain;
 
+import kg.attractor.java.homework.RestaurantOrders;
 import kg.attractor.java.homework.util.NotImplementedException;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Order {
     // Этот блок кода менять нельзя! НАЧАЛО!
@@ -54,6 +56,10 @@ public class Order {
     //----------------------------------------------------------------------
 
     public void calculateTotal() {
-        throw new NotImplementedException("Вам надо реализовать этот метод!");
+
+    }
+
+    public void printListOfOrders() {
+        items.forEach(System.out::println);
     }
 }
