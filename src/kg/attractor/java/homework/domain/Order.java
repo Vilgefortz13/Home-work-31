@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
+import static java.util.stream.Collectors.*;
+
 public class Order {
     // Этот блок кода менять нельзя! НАЧАЛО!
     private final Customer customer;
@@ -69,6 +71,9 @@ public class Order {
     }
 
     public void printListOfOrders() {
-        items.forEach(System.out::println);
+        var orders = items.stream()
+                .map(Item::getName)
+                .collect(toList());
+        orders.forEach(System.out::println);
     }
 }
