@@ -3,8 +3,7 @@ package kg.attractor.java.homework.domain;
 import kg.attractor.java.homework.RestaurantOrders;
 import kg.attractor.java.homework.util.NotImplementedException;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
@@ -69,5 +68,21 @@ public class Order {
                 .map(Item::getName)
                 .collect(toList());
         orders.forEach(System.out::println);
+    }
+
+    public List<Item> sortedByMaxPrice() {
+        List<Item> maxPrices = items.stream()
+                .sorted(Comparator.comparing(Item::getPrice))
+                .collect(toList());
+
+        return Arrays.asList(maxPrices.get(maxPrices.size() - 1), maxPrices.get(maxPrices.size() - 2));
+    }
+
+    public List<Item> sortedByMinPrice() {
+        List<Item> minPrices = items.stream()
+                .sorted(Comparator.comparing(Item::getPrice))
+                .collect(toList());
+
+        return Arrays.asList(minPrices.get(0), minPrices.get(1));
     }
 }
