@@ -58,20 +58,14 @@ public class Order {
     //------   Реализация ваших методов должна быть ниже этой линии   ------
     //----------------------------------------------------------------------
 
-    public DoubleStream calculateTotal() {
-        int sum = 0;
-        DoubleStream result = DoubleStream.of(0);
-
-        while (items.size() > 0) {
-            result = items.stream()
-                    .mapToDouble(e -> e.getPrice() + sum);
-        }
-
-        return result;
+    public double calculateTotal() {
+        return items.stream()
+                .mapToDouble(e -> e.getPrice())
+                .sum();
     }
 
     public void printListOfOrders() {
-        var orders = items.stream()
+        List<String> orders = items.stream()
                 .map(Item::getName)
                 .collect(toList());
         orders.forEach(System.out::println);
