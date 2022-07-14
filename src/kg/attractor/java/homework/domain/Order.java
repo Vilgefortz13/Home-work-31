@@ -80,4 +80,18 @@ public class Order {
 
         return Arrays.asList(minPrices.get(0), minPrices.get(1));
     }
+
+    public Item maxHomeDelivery() {
+        return items.stream()
+                .filter(e -> homeDelivery)
+                .max(Comparator.comparingDouble(Item::getPrice))
+                .get();
+    }
+
+    public Item minHomeDelivery() {
+        return items.stream()
+                .filter(e -> homeDelivery)
+                .min(Comparator.comparingDouble(Item::getPrice))
+                .get();
+    }
 }
