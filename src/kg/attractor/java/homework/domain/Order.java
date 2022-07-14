@@ -1,10 +1,6 @@
 package kg.attractor.java.homework.domain;
 
-import kg.attractor.java.homework.RestaurantOrders;
-import kg.attractor.java.homework.util.NotImplementedException;
-
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
 import static java.util.stream.Collectors.*;
@@ -57,10 +53,9 @@ public class Order {
     //------   Реализация ваших методов должна быть ниже этой линии   ------
     //----------------------------------------------------------------------
 
-    public double calculateTotal() {
+    public DoubleStream calculateTotal() {
         return items.stream()
-                .mapToDouble(e -> e.getPrice())
-                .sum();
+                .mapToDouble(e -> e.getPrice() + total);
     }
 
     public void printListOfOrders() {
