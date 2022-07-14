@@ -2,7 +2,6 @@ package kg.attractor.java.homework.domain;
 
 import java.util.*;
 import java.util.stream.DoubleStream;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
@@ -104,10 +103,13 @@ public class Order {
                 .collect(toList());
     }
 
-    public void groupingByName() {
-        var grouping = items.stream()
+    public Map<String, List<String>> groupingByName() {
+        return items.stream()
                 .collect(groupingBy(Item::getName, mapping(Item::getType, toList())));
+    }
 
-        grouping.forEach((k, v) -> System.out.printf("%s - [%s]%n", k, v));
+    public Map<String, List<Double>> listOfCustomers() {
+        return items.stream()
+                .collect(groupingBy(Item::getName, mapping(Item::getPrice, toList())));
     }
 }
