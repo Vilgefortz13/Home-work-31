@@ -104,4 +104,10 @@ public class Order {
                 .collect(toList());
     }
 
+    public void groupingByName() {
+        var grouping = items.stream()
+                .collect(groupingBy(Item::getName, mapping(Item::getType, toList())));
+
+        grouping.forEach((k, v) -> System.out.printf("%s - [%s]%n", k, v));
+    }
 }
