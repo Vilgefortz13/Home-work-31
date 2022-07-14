@@ -2,6 +2,7 @@ package kg.attractor.java.homework.domain;
 
 import java.util.*;
 import java.util.stream.DoubleStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
@@ -94,4 +95,13 @@ public class Order {
                 .min(Comparator.comparingDouble(Item::getPrice))
                 .get();
     }
+
+    public List<Item> returnSelectedRange(double minOrderTotal, double maxOrderTotal) {
+        return items.stream()
+                .sorted(Comparator.comparingDouble(Item::getPrice))
+                .dropWhile(e -> e.getPrice() < minOrderTotal)
+                .takeWhile(e -> e.getPrice() < maxOrderTotal)
+                .collect(toList());
+    }
+
 }
